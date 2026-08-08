@@ -2,3 +2,4 @@ title: Pickies
 description: 好きを、つまもう。
 baseurl: "/pc"
 permalink: /posts/:year/:month/:day/:title/
+logo-img: /pc/file_00000000cb347206bee0785d5a4a8cb4.png
