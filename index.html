@@ -1,40 +1,84 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pickies - 好きを、つまもう。</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Zen Kaku Gothic New', sans-serif; background: #0a0a12; color: #e9e6f7; overflow-x: hidden; }
-  a { text-decoration: none; color: inherit; }
-  ::selection { background: #a855f7; color: #fff; }
+---
+layout: default
+---
+<section class="hero">
+  <div class="hero-badge">◆ いろんな「好き」が集まる場所 ◆</div>
+  <h1>好きを、<span class="accent">つまもう</span>。</h1>
+  <p>コード、ゲーム、イラスト、音楽。みんなの「好き」を軸に活動できる、ゆるくあたたかいオンラインコミュニティ。</p>
+  <div class="hero-buttons">
+    <a href="#blog" class="btn btn-primary">ブログを見る</a>
+    <a href="#discord" class="btn btn-ghost">Discordで話す</a>
+  </div>
+  <div class="hero-emoji">💻 🎮 🎨 🎵</div>
+</section>
 
-  .neon-pink { text-shadow: 0 0 6px rgba(255,45,149,.9), 0 0 22px rgba(255,45,149,.5), 0 0 46px rgba(255,45,149,.3); }
+<section id="cats">
+  <div class="section-title">◆ <span class="g">Pickies</span> の活動 ◆</div>
+  <div class="section-sub">それぞれが好きなジャンルで、マイペースに活動しています</div>
+  <div class="cat-grid">
+    <div class="cat-card"><span class="cat-icon">💻</span><h3>PROGRAMMING</h3><p>ゲーム制作・Webサイト・便利ツールなど、コードで好きを作る。</p></div>
+    <div class="cat-card"><span class="cat-icon">🎮</span><h3>GAME</h3><p>みんなで一緒に遊んだり、自作ゲームを試したり。</p></div>
+    <div class="cat-card"><span class="cat-icon">🎨</span><h3>ART</h3><p>絵描き配信、イラスト交換、スケッチ会まで。</p></div>
+    <div class="cat-card"><span class="cat-icon">🎵</span><h3>MUSIC</h3><p>作ってみた、演奏、音ゲー談義まで。</p></div>
+  </div>
+</section>
 
-  .bg-glow { position: fixed; inset: 0; pointer-events: none; z-index: 0;
-    background:
-      radial-gradient(600px 300px at 15% 0%, rgba(168,85,247,.18), transparent 60%),
-      radial-gradient(700px 400px at 90% 15%, rgba(255,45,149,.12), transparent 60%),
-      radial-gradient(600px 400px at 50% 100%, rgba(34,211,238,.08), transparent 60%);
-  }
-  .wrap { position: relative; z-index: 1; }
+<section id="blog">
+  <div class="section-title">◆ <span class="g">NEW BLOG</span> ◆</div>
+  <div class="section-sub">メンバーが書いた記事がここに並びます</div>
+  <div class="blog-grid">
+    {% for post in site.posts limit:3 %}
+    <article class="blog-card">
+      <div class="blog-thumb thumb-{{ forloop.index }}">{{ post.emoji }}</div>
+      <div class="blog-body">
+        <span class="blog-cat {{ post.category_class }}">{{ post.category }}</span>
+        <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
+        <p class="blog-meta">{{ post.date | date: "%Y年%m月%d日" }} by {{ post.author }}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  <a href="/pc/posts.html" class="more-link">ブログ一覧へ →</a>
+</section>
 
-  header { position: sticky; top: 0; z-index: 10; background: rgba(10,10,18,.85); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(168,85,247,.5); box-shadow: 0 0 18px rgba(168,85,247,.25); }
-  .nav { max-width: 1100px; margin: 0 auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  .logo { display: flex; align-items: center; gap: 10px; }
-  .logo-img { height: 42px; width: auto; display: block; }
-  .logo-text { font-family: 'DotGothic16', sans-serif; font-size: 1.6em; letter-spacing: 2px; display: none; }
-  .logo-text .pick { color: #c084fc; }
-  .logo-text .ies { color: #ff2d95; }
-  .logo-text .pick, .logo-text .ies { text-shadow: 0 0 8px currentColor, 0 0 24px currentColor; }
-  .nav-links { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
-  .nav-links a { padding: 8px 14px; border-radius: 999px; font-weight: 700; font-size: .9em; color: #b9b3dc; transition: .2s; }
-  .nav-links a:hover { color: #fff; text-shadow: 0 0 10px #a855f7; background: rgba(168,85,247,.12); }
-  .nav-links a.discord-btn { background: rgba(88,101,242,.18); border: 1px solid #5865F2; color: #b9bfff; box-shadow: 0 0 14px rgba(88,101,242,.4); }
+<section id="yt">
+  <div class="section-title">◆ <span class="g">NEW VIDEO</span> ◆</div>
+  <div class="section-sub">YouTube新着が自動で表示されるエリア</div>
+  <div class="yt-grid" id="yt-grid">
+    <p style="color:#9a94bd;">読み込み中…</p>
+  </div>
+</section>
+
+<section id="discord">
+  <div class="discord-cta">
+    <h2>💬 待合室に来ない？</h2>
+    <p>ここに来ればいつでも誰かが何かしてる。<br>気軽に、好きなことを話しにきてね。</p>
+    <a href="https://discord.gg/あなたの招待リンク" class="btn-white" target="_blank">Discord サーバーに参加</a>
+  </div>
+</section>
+
+<footer>© 2026 Pickies — 好きを、つまもう。</footer>
+
+<script>
+  fetch('/pc/assets/youtube.json')
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      var grid = document.getElementById('yt-grid');
+      grid.innerHTML = '';
+      (data.videos || []).slice(0,3).forEach(function(v){
+        var card = document.createElement('div');
+        card.className = 'yt-card';
+        card.innerHTML =
+          '<a href="https://www.youtube.com/watch?v=' + v.id + '" target="_blank" style="display:block;text-decoration:none;color:inherit;">' +
+          '<div class="yt-thumb"><img src="' + v.thumb + '" alt="サムネイル" style="width:100%;height:100%;object-fit:cover;border-radius:14px;"></div>' +
+          '<div class="info"><h4>' + v.title + '</h4><p>' + v.author + '</p><p>新着</p></div>' +
+          '</a>';
+        grid.appendChild(card);
+      });
+      if (!(data.videos||[]).length) { grid.innerHTML = '<p style="color:#7d94bd;">まだ動画がありません（後で自動表示されます）</p>'; }
+    })
+    .catch(function(){ grid.innerHTML = '<p style="color:#7d94bd;">動画を読み込めませんでした</p>'; });
+</script>  .nav-links a.discord-btn { background: rgba(88,101,242,.18); border: 1px solid #5865F2; color: #b9bfff; box-shadow: 0 0 14px rgba(88,101,242,.4); }
   .nav-links a.discord-btn:hover { background: rgba(88,101,242,.35); color: #fff; }
 
   .hero { max-width: 1100px; margin: 0 auto; padding: 80px 20px 56px; text-align: center; }
