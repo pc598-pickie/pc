@@ -1,0 +1,5 @@
+html
+layout: default
+title: ブログ一覧
+<section class="hero" style="padding-bottom:24px;"> <div class="hero-badge">✍️ Pickies ブログ</div> <h1>みんなの投稿</h1> <p>メンバーが書いた記事の一覧です。</p> </section> <section> <div class="blog-grid"> {% for post in site.posts %} <article class="blog-card"> <div class="blog-thumb thumb-{{ forloop.index }}">{{ post.emoji }}</div> <div class="blog-body"> <span class="blog-cat {{ post.category_class }}">{{ post.category }}</span> <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4> <p class="blog-meta">{{ post.date | date: "%Y年%m月%d日" }} by {{ post.author }}</p> </div> </article> {% else %} <p style="color:#8d88ad;">まだ記事がありません。最初の投稿を待っています！</p> {% endfor %} </div> </section> ```
+2b：ボタンのリンク先を blog.html
