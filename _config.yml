@@ -1,0 +1,4 @@
+title: Pickies
+description: 好きを、つまもう。
+baseurl: "/pc"
+permalink: /posts/:year/:month/:day/:title/
