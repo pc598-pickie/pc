@@ -1,35 +1,17 @@
 ---
 layout: default
-title: Pickies
+title: ブログ一覧
 ---
 
-<section class="hero">
-  <div class="hero-badge">🔮 いろんな「好き」が集まる場所 ◆</div>
-  <h1>好きを、<span class="accent">つまもう</span>。</h1>
-  <p>コード、ゲーム、イラスト、音楽。みんなの「好き」を軸に活動できる、ゆるくあたたかいオンラインコミュニティ。</p>
-  <div class="hero-buttons">
-    <a href="#blog" class="btn btn-primary">ブログを見る</a>
-    <a href="#discord" class="btn btn-ghost">Discordで話す</a>
-  </div>
-  <div class="hero-emoji">💻 🎮 🎨 🎵</div>
+<section class="hero" style="padding-bottom:24px;">
+  <div class="hero-badge">✍️ Pickies ブログ</div>
+  <h1>みんなの投稿</h1>
+  <p>メンバーが書いた記事の一覧です。</p>
 </section>
 
-<section id="cats">
-  <div class="section-title">◆ <span class="g">Pickies</span> の活動 ◆</div>
-  <div class="section-sub">それぞれが好きなジャンルで、マイペースに活動しています</div>
-  <div class="cat-grid">
-    <div class="cat-card"><span class="cat-icon">💻</span><h3>PROGRAMING</h3><p>ゲーム制作・Webサイト・便利ツールなど、コードで好きを作る。</p></div>
-    <div class="cat-card"><span class="cat-icon">🎮</span><h3>GAME</h3><p>みんなで一緒に遊んだり、自作ゲームを試したり。</p></div>
-    <div class="cat-card"><span class="cat-icon">🎨</span><h3>ART</h3><p>絵描き配信、イラスト交換、スケッチ会まで。</p></div>
-    <div class="cat-card"><span class="cat-icon">🎵</span><h3>MUSIC</h3><p>作ってみた、演奏、音ゲー談義まで。</p></div>
-  </div>
-</section>
-
-<section id="blog">
-  <div class="section-title">◆ <span class="g">NEW BLOG</span> ◆</div>
-  <div class="section-sub">メンバーが書いた記事がここに並びます</div>
+<section>
   <div class="blog-grid">
-    {% for post in site.posts limit:3 %}
+    {% for post in site.posts %}
     <article class="blog-card">
       <div class="blog-thumb thumb-{{ forloop.index }}">{{ post.emoji }}</div>
       <div class="blog-body">
@@ -38,26 +20,8 @@ title: Pickies
         <p class="blog-meta">{{ post.date | date: "%Y年%m月%d日" }} by {{ post.author }}</p>
       </div>
     </article>
+    {% else %}
+    <p style="color:#8d88ad;">まだ記事がありません。最初の投稿を待っています！</p>
     {% endfor %}
   </div>
-  <a href="{{ '/blog.html' | relative_url }}" class="more-link">ブログ一覧へ →</a>
 </section>
-
-<section id="yt">
-  <div class="section-title">◆ <span class="g">NEW VIDEO</span> ◆</div>
-  <div class="section-sub">YouTubeチャンネルの新着があります</div>
-  <div class="yt-grid">
-    <a class="yt-card" href="https://youtube.com/@group_pickies" target="_blank">
-      <div class="yt-thumb"><span class="yt-play">▶</span></div>
-      <div class="info"><h4>Pickies公式チャンネル</h4><p>YouTube で開く</p></div>
-    </a>
-  </div>
-</section>
-
-<section id="discord">
-  <div class="discord-cta">
-    <h2>💬 待合室に来ない？</h2>
-    <p>ここに来ればいつでも誰かが何かしてる。<br>気軽に、好きなことを話しにきてね。</p>
-    <a href="https://discord.gg/6VSxT3Pwsr" class="btn-white">Discord サーバーに参加</a>
-  </div>
-      </section>
